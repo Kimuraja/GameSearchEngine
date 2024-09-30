@@ -1,0 +1,40 @@
+@import '../../variables/variables';
+@import '../../variables/breakpoints';
+@import '../../variables/layout';
+@import '../../variables/sizing';
+@import '../../variables/typography';
+@import '../../variables/objects';
+
+
+.footer {
+  @include sizing(8rem 0 0 0, unset, 100%, initial);
+  background-color: black;
+
+  &__textarea { 
+    @include layout(flex, column, center, center, unset); 
+    padding: 3rem 5rem;
+    text-align: center
+  }
+
+  &__button { 
+    @include typography($main_font-color, 600, 1rem, unset, none, unset);
+    @include layout(flex, column, initial, initial, unset);
+    @include sizing(0 0 .8rem 0, .5rem 1rem, unset, 100%);
+    background: linear-gradient(to right, $buy_button_dark, $buy_button_light);
+    border: none;
+    border-radius: .5rem;
+    transition: all .3s;
+    &:hover { filter: brightness(120%) }
+  }
+
+  &__link { 
+    cursor: pointer;
+    @include typography($main_font-color, 400, 1rem, none, none , unset);
+    &:hover { color: #6ed0ff; }
+  }
+
+
+  &__text, 
+  &__sign-up { @include typography($secondary_font-color, 400, 1rem, none, none , unset)}
+  &__heading { @include typography(#6ed0ff, 400, 2rem, none, none, unset);}
+}

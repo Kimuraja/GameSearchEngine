@@ -1,0 +1,23 @@
+@import "../node_modules/bootstrap/scss/bootstrap";
+@import './variables/variables';
+@import './variables/breakpoints';
+@import './variables/layout';
+@import './variables/sizing';
+@import './variables/typography';
+
+@import './components/GameList/gameList';
+@import './components/Navbar/Navbar';
+@import './components/Main/Main';
+@import './components/Loading/Loading';
+@import './components/GameInfo/gameInfo';
+@import './components/Offer/Offer';
+
+*, *::before, *::after {
+  @include typography(unset, unset, 1rem, none, none, unset);
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  background: linear-gradient(to right, $color_light_navy, $color_dark_navy);
+}

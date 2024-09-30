@@ -1,0 +1,16 @@
+@import '../../variables/variables';
+@import '../../variables/breakpoints';
+@import '../../variables/layout';
+@import '../../variables/sizing';
+@import '../../variables/typography';
+
+.main {
+  padding: 0;
+  
+  &__header {
+    @include sizing(0 auto, 0, 100%, 75vh);
+    aspect-ratio: 10 / 6;
+    position: relative;
+    z-index: 0;
+  }
+}

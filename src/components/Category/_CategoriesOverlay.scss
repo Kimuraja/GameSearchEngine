@@ -1,0 +1,42 @@
+@import '../../variables/variables';
+@import '../../variables/breakpoints';
+@import '../../variables/layout';
+@import '../../variables/sizing';
+@import '../../variables/typography';
+@import '../../variables/objects';
+
+.overlay {
+  cursor: pointer;
+  z-index: 1;
+  @include layout(flex, unset, start, end, absolute);
+  @include sizing(0 1.5rem, unset, 25rem, 15rem);
+  background: linear-gradient(to top, rgb(0, 0, 0, .9), transparent 70%);
+  @include respond(phone) { @include sizing(.5rem 1rem, unset, 22rem, 16rem);}
+  @include respond(tab-land){ @include sizing(.5rem 1.2rem, unset, 18rem, 21rem)}
+
+  &__textarea {
+    @include layout(flex, column, unset, unset, unset);
+    padding: 0 0 .5rem 1rem;
+    flex-direction: column;
+  }
+
+
+  &__button {
+    @include layout(flex, unset, end, unset, unset);
+    @include sizing(unset, 0 1rem .5rem 0, 100rem, 3rem);
+    background: transparent;
+    border: none;
+    color: white;
+    position: relative;
+    transition: all .3s ease-in-out;
+
+    &:hover {
+      color: $buy_button_light;
+      filter: brightness(120%);
+    }
+  }
+
+  &__arrow { font-size: 2rem;}
+  &__text { color: $main_font-color }
+  &__heading { @include typography($main_font-color, unset, 2rem, none, none, unset); }
+}

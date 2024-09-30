@@ -1,0 +1,52 @@
+@import '../../variables/variables';
+@import '../../variables/breakpoints';
+@import '../../variables/layout';
+@import '../../variables/sizing';
+@import '../../variables/typography';
+
+.games {
+  &__input, .form-control {
+    @include sizing(unset, .3rem .8rem, 100%, 100%);
+    background: transparent;
+    border: 2px solid $secondary_font-color;
+    border-radius: .5rem;
+    flex-shrink: 1;
+    color: $main_font-color;
+  }
+  &__list {
+    @include sizing(0, 0, 100%, auto);
+    @include layout(flex, column, start, start, unset);
+    overflow: auto;     
+    max-height: calc(100vh - 40rem);
+    flex-grow: 1;
+    background: linear-gradient(to bottom, $color_dark_navy, $color_light_navy);
+    color: $main_font-color;
+    border: 4px solid rgba(0, 0, 0, 0);
+    text-shadow: 1px 1px 2px #000000aa;
+    box-shadow: 0 0 12px #000000;
+  }
+  &__content {
+    @include sizing(0, .3rem, 100%, auto);
+    transition: all .3s;
+    cursor: pointer;
+    display: flex;
+
+    &:hover { background-color: $secondary_font-color;}
+  }
+  &__link { 
+    @include typography($main_font-color, unset, 1rem, none, none, unset);
+    width: 100%
+  } 
+}
+
+.game-info {
+  @include layout(flex, column, space-around, unset, unset);
+  margin-left: .5rem;
+  padding: 0;
+  width: 50%;
+}
+
+.game-nomralPrice {
+  text-decoration: line-through;
+  color: $secondary_font-color;
+}

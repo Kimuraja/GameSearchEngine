@@ -1,0 +1,11 @@
+@import '../../variables/variables';
+@import '../../variables/breakpoints';
+@import '../../variables/layout';
+@import '../../variables/sizing';
+@import '../../variables/typography';
+@import '../../variables/objects';
+
+.small {
+  &__textarea { @include sizing(unset, unset, 100%, 100%) }
+  &__heading { @include typography($main_font-color, unset, 1rem, unset, none, unset);}
+}

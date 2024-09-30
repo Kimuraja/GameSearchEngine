@@ -1,0 +1,41 @@
+@import '../../variables/variables';
+@import '../../variables/breakpoints';
+@import '../../variables/layout';
+@import '../../variables/sizing';
+@import '../../variables/typography';
+@import '../../variables/objects';
+
+
+
+.deals {
+  @include layout(flex, row, center, center, unset);
+  @include sizing(6rem 0 0 0, 0, 100%, 100%);
+
+  &__link {
+    @include typography($main_font-color, 200, 1rem, none, none, unset);
+    @include layout(flex, row, space-between, center, unset);
+  }
+  &__list {
+    transition: all .1s ease-out;
+    list-style: none;
+    &:hover {
+      background-color: $secondary_font-color;
+      color: $main_font-color;
+      cursor: pointer;
+    }
+  }
+  &__title {
+    @include typography($main_font-color, 200, 1rem, none, none, unset);
+    @include sizing(0, 0 1rem, unset, 100%);
+  }
+
+  &__u-list {
+    @include sizing(0 0 5rem 0, 0, 90%, 100%);
+    background-color: #2a415b;
+  }
+
+  &__normal-price { @include oldPrice; }
+  &__discount { @include discount-greenBox }
+  &__heading { @include layout(flex, row, space-between, center, unset); }
+  &__list-content { @include layout(flex, row, center, center, initial); }
+}

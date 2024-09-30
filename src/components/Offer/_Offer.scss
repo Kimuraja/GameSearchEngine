@@ -1,0 +1,87 @@
+@import '../../variables/variables';
+@import '../../variables/breakpoints';
+@import '../../variables/layout';
+@import '../../variables/sizing';
+@import '../../variables/typography';
+@import '../../variables/objects';
+
+.offer {
+  .textarea {
+    margin-top: 0;
+    @include sectionTextarea;
+    &__heading { @include sectionTitle}
+  }
+  
+  &__games {
+    @include layout(flex, unset, center, baseline, relative);
+    width: 100%;
+    flex-wrap: wrap;
+  }
+  &__image {
+    @include sizing(unset, unset, 14rem, 20rem);
+    object-fit: cover;
+    object-position: top center;
+    position: relative;
+    z-index: 1;
+    transition: all .3s ease-in-out;
+  }
+
+  &__like-btn {
+    @include sizing(.5rem, 0rem, 3.2rem, 3.2rem);
+    @include layout(flex, unset, center, center, absolute);
+    z-index: 5;
+    border: none;
+    color: white;
+    background: rgba(44, 44, 43, .9);
+    border-radius: 1rem;
+    cursor: pointer;
+    transition: all .3s;
+      &:hover { @include sizing(.5rem, 1rem, 3.5rem, 3.5rem); 
+        &:active { @include sizing(.5rem, 1rem, 3.3rem, 3.3rem); }
+      }
+  }
+
+  &__image-section {
+    @include layout(flex, unset, end, start, relative);
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 22px 70px 4px;
+    transition: all .3s ease-in-out;
+
+    &:hover {
+      box-shadow: rgba(0, 0, 0, 0.56) 0px -20px 70px 4px;
+    }
+
+    
+  }
+  &__image-textarea {
+    @include layout(flex, column, space-between, baseline, unset);
+    color: $main_font-color;
+  }
+  &__heading {
+    @include sizing(1rem 0 0 0, unset, 14rem, 100%);
+    font-size: 1rem;
+    font-weight: 400;
+  }
+
+  &__gameBlock {
+    @include layout(flex, column, unset, unset, unset);
+    transition: all .3s ease-in-out;
+    margin: 0 1.5rem;
+
+    &:hover {
+      cursor: pointer;
+      scale: 1.1;
+    }
+  }
+  &__pricing {
+    @include layout(flex, unset, start, center, unset);
+    font-weight: 200
+
+  }
+  &__old-price { 
+    @include oldPrice;
+    font-size: .8rem;
+    margin-right: .3rem;
+  }
+  &__savings { @include discount-greenBox }
+}
+

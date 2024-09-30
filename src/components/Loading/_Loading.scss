@@ -1,0 +1,14 @@
+@import '../../variables/variables';
+@import '../../variables/breakpoints';
+@import '../../variables/layout';
+@import '../../variables/sizing';
+@import '../../variables/typography';
+
+.loading {
+  @include sizing(0, 0, 100vw, 100vh);
+  @include layout(flex, column, center, center, unset);
+  background: linear-gradient(to right, $color_light_navy, $color_dark_navy);
+  color: white;
+}
+
+.spinner-border { @include sizing(3rem 0 0 0, unset, 10rem, 10rem); }

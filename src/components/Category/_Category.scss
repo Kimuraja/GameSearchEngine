@@ -1,0 +1,38 @@
+@import '../../variables/variables';
+@import '../../variables/breakpoints';
+@import '../../variables/layout';
+@import '../../variables/sizing';
+@import '../../variables/typography';
+@import '../../variables/objects';
+
+.category-section { margin-top: 5rem }
+.category {
+  &__games {
+    @include layout(flex, unset, center, center, relative);
+    flex-wrap: wrap;
+  }
+
+  &__image {
+    object-fit: cover;
+    object-position: center center;
+    @include sizing(1rem 1.5rem, unset, 25rem, 14rem);
+    @include respond(phone) { @include sizing(.5rem 1rem, unset, 22rem, 16rem) }
+    @include respond(tab-land){@include sizing( .5rem 1.2rem, unset, 18rem, 20rem)}
+  }
+
+  &__gameCategory {
+    transition: all .3s ease-in-out;
+    &:hover {
+      transform: translateY(-.5rem);
+      filter: brightness(120%)
+    }
+  }
+}
+
+.textarea {
+  @include sectionTextarea;
+  &__heading { 
+    @include sectionTitle;
+    margin-top: 3rem
+  }
+}
