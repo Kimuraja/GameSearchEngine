@@ -41,9 +41,7 @@
 
 .game-info {
   @include layout(flex, column, space-around, unset, unset);
-  margin-left: .5rem;
-  padding: 0;
-  width: 50%;
+  @include sizing(0 0 0 .5rem, 0, 50%, auto);
 }
 
 .game-nomralPrice {

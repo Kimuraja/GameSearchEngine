@@ -4,13 +4,17 @@ import useChosenStore from "../../config/useChosenStore";
 import useStore from "../../config/useStore";
 import "./_SelectedGame.scss";
 import React from "react";
+import useGameDB from "../../config/useGameDB";
+import Deals from "../Deals/Deals";
 
 const SelectedGame: React.FC = () => {
   const { dealID } = useParams<{ dealID: string }>();
   const { gameData, getID } = useChosenStore();
   const { storeData } = useStore();
-  const cheaperGameList = gameData?.cheaperStores || []
-  console.log();
+  const cheaperGameList = gameData?.deals || []
+  const { filterGame } = useGameDB()
+
+  const score = filterGame.find((game) => game.title === gameData?.info?.title)
 
   useEffect(() => {
     if (dealID) {
@@ -18,58 +22,47 @@ const SelectedGame: React.FC = () => {
     }
   }, [dealID, getID]);
 
-  const date = new Date(Number(gameData?.gameInfo?.releaseDate) * 1000);
-  const formattdDate = date.toLocaleDateString("pl-PL");
+  const date = gameData?.cheapestPriceEver?.date
+  ? new Date(gameData.cheapestPriceEver.date * 1000)
+  : undefined;
+  const formattdDate = date ? date.toLocaleDateString("pl-PL") : "Unknown Date";
+
+
   return (
     <section className="container-fluid">
       <div className="row">
         <div className="col-12">
           <div className="game">
+
             <div className="game__header">
-              <img src={gameData?.gameInfo?.thumb} alt="img" className="game__image" />
+              <img src={gameData?.info?.thumb} alt="img" className="game__image" />
               <div className="game__header--textarea">
                 <h2>
                   <a className="game__heading"
-                    href={
-                      gameData?.cheaperStores?.[0]?.salePrice
-                        ? `https://www.cheapshark.com/redirect?dealID=${gameData?.cheaperStores[0]?.dealID}`
-                        : `https://www.metacritic.com${gameData?.gameInfo?.metacriticLink}`
-                      }
-                      target="_blank"
+                    href={`https://www.cheapshark.com/redirect?dealID=${gameData?.deals[0]?.dealID}`}
+                    target="_blank"
                   >
-                    {`${gameData?.gameInfo?.name || "Loading..."}`}
+                    {`${gameData?.info?.title || "Loading..."}`}
                   </a>
                 </h2>
-
-                <p className="game__text">
-                  Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                  Error harum adipisci quo veritatis beatae nostrum fuga id
-                  quam!
-                </p>
               </div>
               <div className="decoration"></div>
               <ul className="game__header--list">
                 <li>
-                  Sale Price: <span id="price"> {gameData?.cheaperStores[0]?.salePrice ? gameData?.cheaperStores[0]?.salePrice : gameData?.gameInfo?.salePrice}$</span>
+                  Sale Price: <img src={`https://www.cheapshark.com${storeData[0]?.images["icon"] || "Unknown Store"}`} alt="img" /> <span id="price">{gameData?.deals[0]?.price}$</span>
                 </li>
-                <li>
-                  Regular Price: <span id="retail"> {gameData?.gameInfo?.retailPrice}$</span>
-                </li>
-                <li>
-                  Metacritic Score: <span id="critic"> {gameData?.gameInfo?.metacriticScore}</span>
-                </li>
-                <li>
-                  Release Date: <span id="releaseDate">{formattdDate}</span>
-                </li>
+                <li>Regular Price: <span id="retail">{gameData?.deals[0]?.retailPrice}$</span></li>
+                <li>Metacritic Score: <span id="critic">{score?.metacriticScore}</span></li>
+                <li>Release Date: <span id="releaseDate">{formattdDate}</span></li>
               </ul>
             </div>
 
             <div className="game__body">
               {cheaperGameList && cheaperGameList.length > 0 ? (
                 <div className="game__list-content">
-                  {cheaperGameList.map((store) => (
+                  {cheaperGameList.slice(1, 6).map((store) => (
                     <ul key={store.dealID} className="game__offer-list">
-                      <li>
+                      <li className="game__list-content">
                         <img
                           src={`https://www.cheapshark.com${
                             storeData.find(
@@ -80,7 +73,7 @@ const SelectedGame: React.FC = () => {
                           className="game__list-icon"
                         />
                       </li>
-                      <li> Sale Price: <span id="price">{store.salePrice}$</span></li>
+                      <li>Sale Price: <span id="price">{store.price}$</span></li>
                       <li>Regular Price: <span id="retail">{store.retailPrice}$</span></li>
                       <li>
                         <a
@@ -100,6 +93,7 @@ const SelectedGame: React.FC = () => {
             </div>
           </div>
         </div>
+        <Deals />
       </div>
     </section>
   );

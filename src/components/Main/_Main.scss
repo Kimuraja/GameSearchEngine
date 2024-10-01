@@ -4,9 +4,9 @@
 @import '../../variables/sizing';
 @import '../../variables/typography';
 
-.main {
-  padding: 0;
-  
+.components {
+  @include sizing(0, 0, 100%, 100%);
+    
   &__header {
     @include sizing(0 auto, 0, 100%, 75vh);
     aspect-ratio: 10 / 6;

@@ -6,20 +6,22 @@
 @import '../../variables/objects';
 
 
-
 .deals {
   @include layout(flex, row, center, center, unset);
-  @include sizing(6rem 0 0 0, 0, 100%, 100%);
-
+  @include sizing(3rem 0 0 0, 0, 100%, 100%);
+  flex-wrap: wrap;
+  
   &__link {
     @include typography($main_font-color, 200, 1rem, none, none, unset);
     @include layout(flex, row, space-between, center, unset);
   }
   &__list {
-    transition: all .1s ease-out;
+    transition: all .3s ease-out;
     list-style: none;
+    margin: .5rem;
     &:hover {
-      background-color: $secondary_font-color;
+      scale: 1.05;
+      background-color: $secondary_button;
       color: $main_font-color;
       cursor: pointer;
     }
@@ -30,12 +32,19 @@
   }
 
   &__u-list {
-    @include sizing(0 0 5rem 0, 0, 90%, 100%);
+    @include sizing(0 0 5rem 0, 1rem, 95%, 100%);
     background-color: #2a415b;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 22px 70px 4px;
   }
 
   &__normal-price { @include oldPrice; }
   &__discount { @include discount-greenBox }
   &__heading { @include layout(flex, row, space-between, center, unset); }
-  &__list-content { @include layout(flex, row, center, center, initial); }
+  &__list-content { 
+    @include layout(flex, row, center, center, initial); 
+    width: 85vw;
+    @include respond(phone) {
+      width: 45vw;
+    }
+  }
 }

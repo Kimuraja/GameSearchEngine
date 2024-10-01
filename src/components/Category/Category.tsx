@@ -21,15 +21,14 @@ const Category: React.FC = () => {
             </div>
 
             <div className="category__games">
-              
-                  {CATEGORIES.map((_, index) => (
-                    <section className="category__gameCategory">
-                      <div className="category__section">
-                        <CategoryOverlay title={CATEGORY_TITLE[index]}/>
-                        <img src={CATEGORIES[index]} alt='category' className='category__image' draggable='false' />
-                      </div>
-                    </section>
-                  ))}
+              {CATEGORIES.map((key, index) => (
+                <section className="category__gameCategory" key={key}>
+                  <div className="category__section">
+                    <CategoryOverlay title={CATEGORY_TITLE[index]}/>
+                    <img src={CATEGORIES[index]} alt='category' className='category__image' draggable='false' />
+                  </div>
+                </section>
+              ))}
             </div>
           </div>
         </div>

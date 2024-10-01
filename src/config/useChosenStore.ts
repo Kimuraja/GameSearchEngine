@@ -2,39 +2,24 @@ import { useRef, useState, useCallback } from 'react';
 import { fetchGameDeals } from '../components/Api/FetchGameDeals'; 
 
 type GameInfo = {
-  storeID: string;
-  gameID: string;
-  name: string;
+  title: string;
   steamAppID: string;
-  salePrice: string;
-  retailPrice: string;
-  steamRatingText: string;
-  steamRatingPercent: string;
-  steamRatingCount: string;
-  metacriticScore: string;
-  metacriticLink: string;
-  releaseDate: number;
-  publisher: string;
-  steamworks: string;
   thumb: string;
 };
-
-type CheaperStore = {
+type Deals = {
   dealID: string;
   storeID: string;
-  salePrice: string;
+  price: string;
   retailPrice: string;
 };
-
-type CheapestPrice = {
-  price: string;
-  date: number;
-};
-
+type CheapestPriceEver = {
+  price: string,
+  date: number,
+}
 type GameData = {
-  gameInfo: GameInfo;
-  cheaperStores: CheaperStore[];
-  cheapestPrice: CheapestPrice;
+  info: GameInfo;
+  deals: Deals[];
+  cheapestPriceEver: CheapestPriceEver
 };
 
 const useChosenStore = () => {
@@ -46,7 +31,7 @@ const useChosenStore = () => {
     chosenStoreRef.current = encodedID;
 
     try {
-      const data = await fetchGameDeals({ dealID: chosenStoreRef.current });
+      const data = await fetchGameDeals({ gameID: chosenStoreRef.current });
       setGameData(data);
     } catch (error) {
       console.error("ERROR:", error);

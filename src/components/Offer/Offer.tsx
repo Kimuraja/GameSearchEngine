@@ -28,8 +28,8 @@ const Offer: React.FC = () => {
             </div>
 
             <div className="offer__games">
-                {SMALL_GAME_COVER.map((_, index) => (
-                  <section className="offer__gameBlock">
+                {SMALL_GAME_COVER.map((key, index) => (
+                  <section className="offer__gameBlock" key={key}>
                     <div className="offer__image-section">
                       <img src={SMALL_GAME_COVER[index]} alt="game" className="offer__image" draggable='false' />
                       <OfferLikeButton />

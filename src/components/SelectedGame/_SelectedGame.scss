@@ -7,54 +7,62 @@
 
 .game { 
   @include layout(flex, column, center, center, relative);
-  @include sizing(8rem 0 0 0, 0, 100%, 100%);
+  @include sizing(5rem 0 0 0, 0, 100%, 100%);
   @include typography($main_font-color, unset, 1rem, none, none, unset);
+
 
   &__header {
     @include layout(flex, row, space-evenly, center, unset);
-    @include sizing(0 0 2rem 0, 2rem, 90%, 100%);
+    @include sizing(2rem 0 1rem 0, 2rem, 80vw, 30%);
     background-color: #2a415b;
 
 
     &--textarea {
       @include layout(flex, column, center, start, unset);
-      @include sizing(0, 0 0 0 2rem, 50%, 100%);
+      @include sizing(0, 0, 30%, 100%);
     }
     &--list {
       list-style: none;
+      margin: 0;
       @include layout(flex, column, center, start, unset);
-      li {
-        margin: .3rem;
-      }
+      li { margin: .3rem }
     }
   }
 
   &__body {
-    @include layout(flex, column, center, center, unset);
-    @include sizing(0 0 5rem 0, 2rem, 90%, 100%);
-
-    background-color: #2a415b;
+    @include layout(flex, row, center, start, unset);
+    @include sizing(0, 0, 100%, 50%);
 
   }
   &__offer-list {
     list-style: none;
     transition: all .3s;
-    @include layout(flex, row, start, center, unset);
-    height: 6vh;
+    background-color: #2a415b;
+    @include layout(flex, row, space-around, center, unset);
+    @include sizing(0 0 .1rem 0, unset, 80vw, 6vh);
 
     &:hover {
       scale: 1.05;
       border-radius: .3rem;
       background-color: $secondary_button;
       cursor: pointer;
+      border-radius: 1rem;
     }
-
-    li { margin: .01rem 3rem; }
   }
-  &__image { @include sizing(0, 0, 20rem, 10rem) }
-  &__heading { @include typography($main_font-color, 600, 3.5rem, none, none, unset) }
+  &__image { @include sizing(0, 0, 15rem, 8rem) }
+  &__heading { 
+    @include typography($main_font-color, 600, 1.5rem, none, none, unset);
+    display: flex;
+    transition: all .2s ease-in-out;
+    padding: .5rem;
+    &:hover { 
+      border-radius: .2rem;
+      background-color: $buy_button_dark;
+      scale: 1.05;
+    }
+  }
   &__text { color: $secondary_font-color; }
-  &__list-icon { width: 1.5rem;}
+  &__list-icon { width: 2rem }
 }
 
 .decoration {
@@ -62,12 +70,12 @@
   background-color: $main_font-color;
   width: .02rem;
 }
-.critic-link { text-decoration: none; }
+.critic-link { text-decoration: none }
 
-#price { @include discount-greenBox; }
+#price { @include discount-greenBox }
 #retail { @include oldPrice }
-#critic { background-color: $color_dark_navy; }
-#releaseDate { color: $secondary_font-color; }
+#critic { background-color: $color_dark_navy }
+#releaseDate { color: $secondary_font-color }
 
 #shopNow {
   background-color: $buy_button_dark;

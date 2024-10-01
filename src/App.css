@@ -12136,6 +12136,11 @@ textarea.form-control-lg {
   z-index: 0;
 }
 
+.components {
+  padding: 0;
+  margin: 0;
+}
+
 * {
   font-size: 1rem;
 }

@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
-import { fetchGames } from '../components/Api/FetchGames';
+import { fetchGameList } from '../components/Api/FetchGameList';
 
-type T = {
+type GameList = {
   internalName: string;
   title: string;
   metacriticLink: string;
@@ -24,13 +24,13 @@ type T = {
 };
 
 const useGameDB = () => {
-  const [deals, setDeals] = useState<T[]>([]);
+  const [deals, setDeals] = useState<GameList[]>([]);
   const [searchContentData, setSearchContentData] = useState<string>('');
   
   useEffect(() => {
     const getDeals = async () => { 
       try {
-        const response = await fetchGames();
+        const response = await fetchGameList();
         if (response && response.data) {
           setDeals(response.data)
         } else {
@@ -58,6 +58,7 @@ const useGameDB = () => {
     savings: deal.savings,
     name: deal.internalName,
     dealID: deal.gameID,
+    score: deal.metacriticScore
   }))
   return {filterGame, ContentData, searchContentData, BaseContent}
 }

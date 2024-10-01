@@ -14,8 +14,8 @@ const DealList = ({start, end}:Slice) => {
   return (
     <>
       {filterGame.map((deal, index) => (
-        <li className='deals__list' key={index} onClick={() => getID(`${deal.dealID}`)}>
-          <Link to={`/SelectedGame/${deal.dealID}`} className='deals__link'>
+        <li className='deals__list' key={index} onClick={() => getID(`${deal.gameID}`)}>
+          <Link to={`/SelectedGame/${deal.gameID}`} className='deals__link'>
             <div className="deals__heading">
               <img src={deal.thumb} alt="deals__image" className='deals__image' />
               <h4 className="deals__title">{deal.title}</h4>

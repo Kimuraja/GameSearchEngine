@@ -6,7 +6,7 @@ export async function fetchStore() {
     return response.data;
   } catch (error) {
     if (axios.isAxiosError(error)) {
-      console.warn('STORE ERROR:', error.response ? error.response.data : error.message);
+      console.warn('FETCH STORE ERROR:', error.response ? error.response.data : error.message);
     } else {
       console.warn('UNKNOWN ERROR:', error);
     }

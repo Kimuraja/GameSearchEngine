@@ -23,8 +23,8 @@ const GameList: React.FC = () => {
             <p>No games found</p>
           ) : (
             filterGame.map((deal, index) => (
-              <Link to={`/SelectedGame/${deal.dealID}`} className='games__link'>
-                <li key={index} title={deal.title} className='games__content'>
+              <Link to={`/SelectedGame/${deal.gameID}`} className='games__link' key={index} >
+                <li title={deal.title} className='games__content'>
                   <img src={deal.thumb} alt={deal.title} draggable='false'/>
                   <span className="game-info">
                     <span>{deal.title}</span>
