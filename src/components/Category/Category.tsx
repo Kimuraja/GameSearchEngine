@@ -7,8 +7,10 @@ import sport from '../../media/fifa.png';
 import adventure from '../../media/Uncharted.png';
 import CategoryOverlay from './CategoryOverlay';
 
-const CATEGORIES = [horror, adventure, sport, action, rpg]
-const CATEGORY_TITLE = ["Horror", "Adventure", "Sport", "Action", "RPG"]
+const CategoryList = {
+  title: ['Horror','Adventure','Sport','Action','RPG'],
+  category: [horror, adventure, sport, action, rpg]
+}
 
 const Category: React.FC = () => {
   return (
@@ -21,11 +23,11 @@ const Category: React.FC = () => {
             </div>
 
             <div className="category__games">
-              {CATEGORIES.map((key, index) => (
+              {CategoryList.title.map((key, index) => (
                 <section className="category__gameCategory" key={key}>
                   <div className="category__section">
-                    <CategoryOverlay title={CATEGORY_TITLE[index]}/>
-                    <img src={CATEGORIES[index]} alt='category' className='category__image' draggable='false' />
+                    <CategoryOverlay title={CategoryList.title[index]}/>
+                    <img src={CategoryList.category[index]} alt='category' className='category__image' draggable='false' />
                   </div>
                 </section>
               ))}

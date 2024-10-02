@@ -1,21 +1,16 @@
 import useGameDB from '../../config/useGameDB'
 import { Link } from 'react-router-dom'
-import useChosenStore from '../../config/useChosenStore';
+import useSelectedGame from '../../config/useSelectedGame';
 
-type Slice = {
-  start: number;
-  end: number;
-}
-
-const DealList = ({start, end}:Slice) => {
+const DealsSection = () => {
   const { filterGame } = useGameDB()
-  const { getID } = useChosenStore()
+  const { fetchDealsByID } = useSelectedGame()
 
   return (
     <>
-      {filterGame.map((deal, index) => (
-        <li className='deals__list' key={index} onClick={() => getID(`${deal.gameID}`)}>
-          <Link to={`/SelectedGame/${deal.gameID}`} className='deals__link'>
+      {filterGame.slice(0, 10).map((deal, index) => (
+        <li className='deals__list' key={index} onClick={() => fetchDealsByID(`${deal.gameID}`)}>
+          <Link to={`/selected-game/${deal.gameID}`} className='deals__link'>
             <div className="deals__heading">
               <img src={deal.thumb} alt="deals__image" className='deals__image' />
               <h4 className="deals__title">{deal.title}</h4>
@@ -26,9 +21,9 @@ const DealList = ({start, end}:Slice) => {
             </div>
           </Link>
         </li>
-      )).slice(start, end)}
+      ))}
     </>
   )
 }
 
-export default DealList
+export default DealsSection

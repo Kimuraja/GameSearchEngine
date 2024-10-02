@@ -1,12 +1,15 @@
 import { BsHeart, BsHeartFill } from "react-icons/bs";
 import useLikeConfig from '../../config/useLikeConfig';
 
+interface OfferLikeButtonProps {
+  gameId: string;
+}
 
-const OfferLikeButton = () => {
-  const { likeGame, likeGameToggle } = useLikeConfig();
+const OfferLikeButton: React.FC<OfferLikeButtonProps> = ({ gameId }) => {
+  const { likeGame, likeGameToggle } = useLikeConfig(gameId);
 
   const handleLikeClick = () => {
-    likeGameToggle()
+    likeGameToggle();
   };
 
   return (

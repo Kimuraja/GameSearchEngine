@@ -1,11 +1,11 @@
 import { BsArrowRightCircleFill } from 'react-icons/bs'
 import './_CategoriesOverlay.scss'
 
-type T = {
+type CategoryOverlayProps = {
   title: string
 }
 
-const CategoryOverlay = ({ title }:T) => {
+const CategoryOverlay = ({ title }:CategoryOverlayProps) => {
   return (
     <section className="overlay">
       <div className="overlay__textarea">

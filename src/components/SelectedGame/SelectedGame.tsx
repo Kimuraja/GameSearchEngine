@@ -1,45 +1,44 @@
 import { useParams } from "react-router-dom";
 import { useEffect } from "react";
-import useChosenStore from "../../config/useChosenStore";
-import useStore from "../../config/useStore";
+import useStores from "../../config/useStores";
 import "./_SelectedGame.scss";
 import React from "react";
 import useGameDB from "../../config/useGameDB";
 import Deals from "../Deals/Deals";
+import useSelectedGame from "../../config/useSelectedGame";
 
 const SelectedGame: React.FC = () => {
-  const { dealID } = useParams<{ dealID: string }>();
-  const { gameData, getID } = useChosenStore();
-  const { storeData } = useStore();
+  const { gameID } = useParams<{ gameID: string }>();
+  const { gameData, fetchDealsByID } = useSelectedGame();
+  const { storeData } = useStores();
   const cheaperGameList = gameData?.deals || []
   const { filterGame } = useGameDB()
-
   const score = filterGame.find((game) => game.title === gameData?.info?.title)
 
+  console.log(`game id: ${gameID}`)
+
   useEffect(() => {
-    if (dealID) {
-      getID(dealID);
+    if (gameID) {
+      fetchDealsByID(gameID);
     }
-  }, [dealID, getID]);
+  }, [gameID, fetchDealsByID]);
 
   const date = gameData?.cheapestPriceEver?.date
   ? new Date(gameData.cheapestPriceEver.date * 1000)
   : undefined;
-  const formattdDate = date ? date.toLocaleDateString("pl-PL") : "Unknown Date";
-
+  const formattdDate = date ? date.toLocaleDateString("pl-PL") : "Loading Date...";
 
   return (
     <section className="container-fluid">
       <div className="row">
         <div className="col-12">
           <div className="game">
-
             <div className="game__header">
-              <img src={gameData?.info?.thumb} alt="img" className="game__image" />
+              <img src={gameData?.info.thumb} alt="img" className="game__image" />
               <div className="game__header--textarea">
                 <h2>
                   <a className="game__heading"
-                    href={`https://www.cheapshark.com/redirect?dealID=${gameData?.deals[0]?.dealID}`}
+                    href={`https://www.cheapshark.com/redirect?dealID=${gameData?.deals[0].dealID}`}
                     target="_blank"
                   >
                     {`${gameData?.info?.title || "Loading..."}`}
@@ -60,7 +59,7 @@ const SelectedGame: React.FC = () => {
             <div className="game__body">
               {cheaperGameList && cheaperGameList.length > 0 ? (
                 <div className="game__list-content">
-                  {cheaperGameList.slice(1, 6).map((store) => (
+                  {cheaperGameList.slice(0, 5).map((store) => (
                     <ul key={store.dealID} className="game__offer-list">
                       <li className="game__list-content">
                         <img
@@ -88,7 +87,7 @@ const SelectedGame: React.FC = () => {
                   ))}
                 </div>
               ) : (
-                <h1>No Offer Found</h1>
+                <h1>Loading Data...</h1>
               )}
             </div>
           </div>

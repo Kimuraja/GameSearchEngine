@@ -2,15 +2,13 @@ import { useState } from "react";
 import "./_Slider.scss";
 import { BsRecord, BsRecordFill } from "react-icons/bs";
 import SliderTextarea from "./SliderTextarea";
-import useLikeConfig from "../../config/useLikeConfig";
 
-type T = {
+type SliderProps = {
   imageUrls: string[];
 };
 
-const Slider = ({ imageUrls }: T) => {
+const Slider = ({ imageUrls }: SliderProps) => {
   const [imageIndex, setImageIndex] = useState(0);
-  const {likeGame, likeGameToggle} = useLikeConfig()
 
 
   return (
@@ -38,7 +36,7 @@ const Slider = ({ imageUrls }: T) => {
             </button>
           ))}
         </div>
-        <SliderTextarea index={imageIndex} toggle={likeGameToggle} like={likeGame}/>
+        <SliderTextarea index={imageIndex}/>
 
       </div>
     </section>

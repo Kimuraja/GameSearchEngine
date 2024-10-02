@@ -4,10 +4,10 @@ import useGameDB from './config/useGameDB';
 import Loading from "./components/Loading/Loading"
 
 function App() {
-  const { BaseContent } = useGameDB();
+  const { gameDetails } = useGameDB();
 
 
-  if (BaseContent.length === 0) {
+  if (gameDetails.length === 0) {
     return <Loading />
   } else {
     return (

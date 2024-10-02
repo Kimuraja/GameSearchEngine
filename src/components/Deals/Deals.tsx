@@ -1,5 +1,5 @@
 import './_deals.scss'
-import DealList from './DealList'
+import DealsSection from './DealsSection'
 
 const Deals = () => {
 
@@ -10,13 +10,8 @@ const Deals = () => {
           <div className="deals">
             <div className="col-6 deals__list-content">
               <ul className='deals__u-list'>
-                <DealList start={0} end={5}/>
+                <DealsSection/>
               </ul>
-            </div>
-            <div className="col-6 deals__list-content">
-            <ul className='deals__u-list'>
-              <DealList start={6} end={11}/>
-            </ul>
             </div>
           </div>
         </div>

@@ -2,7 +2,7 @@ import { Route, Routes } from 'react-router-dom';
 import Main from '../Main/Main';
 import NavLinks from './NavLinks';
 import './_Navbar.scss';
-import GameList from '../GameList/GameList';
+import GameArray from '../GameList/GameArray';
 import SelectedGame from '../SelectedGame/SelectedGame';
 
 const Navbar = () => {
@@ -10,13 +10,13 @@ const Navbar = () => {
     <section className='container-fluid'>
       <nav className='row'>
         <ul className='nav col-12'>
-          {<GameList />}
+          {<GameArray />}
           <NavLinks/>
         </ul>
       </nav>
       <Routes>
         <Route path='/' element={<Main />}/>
-        <Route path='/SelectedGame/:dealID' element={<SelectedGame />}/>
+        <Route path='/selected-game/:gameID' element={<SelectedGame />}/>
       </Routes>
     </section>
   )

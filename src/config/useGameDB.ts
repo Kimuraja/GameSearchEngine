@@ -25,7 +25,7 @@ type GameList = {
 
 const useGameDB = () => {
   const [deals, setDeals] = useState<GameList[]>([]);
-  const [searchContentData, setSearchContentData] = useState<string>('');
+  const [searchQuery, setSearchQuery] = useState<string>('');
   
   useEffect(() => {
     const getDeals = async () => { 
@@ -43,15 +43,15 @@ const useGameDB = () => {
     getDeals();
   }, []);
 
-  const ContentData = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setSearchContentData(event.target.value);
+  const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setSearchQuery(event.target.value);
   };
 
   const filterGame = deals.filter((deal) =>
-    deal.title.toLowerCase().includes(searchContentData.toLowerCase())
+    deal.title.toLowerCase().includes(searchQuery.toLowerCase())
   );
 
-  const BaseContent = filterGame.map((deal) => ({
+  const gameDetails = filterGame.map((deal) => ({
     title: deal.title,
     salePrice: deal.salePrice,
     normalPrice: deal.normalPrice,
@@ -60,6 +60,7 @@ const useGameDB = () => {
     dealID: deal.gameID,
     score: deal.metacriticScore
   }))
-  return {filterGame, ContentData, searchContentData, BaseContent}
+
+  return {filterGame, handleSearchChange, searchQuery, gameDetails}
 }
 export default useGameDB

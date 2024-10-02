@@ -1,15 +1,20 @@
-import { useState } from "react";
+import { useState, useEffect } from 'react';
 
-const useLikeConfig = () => {
-  const [likeGame, setLikeGame] = useState(false);
+const useLikeConfig = (gameId: string) => {
+  const [likeGame, setLikeGame] = useState(() => {
+    const savedLikeGame = localStorage.getItem(`likeGame_${gameId}`);
+    return savedLikeGame ? JSON.parse(savedLikeGame) : false;
+  });
 
+  useEffect(() => {
+    localStorage.setItem(`likeGame_${gameId}`, JSON.stringify(likeGame));
+  }, [likeGame, gameId]);
 
   const likeGameToggle = () => {
-    setLikeGame(!likeGame);
+    setLikeGame((prev: boolean) => !prev);
   };
 
-  return {likeGame, likeGameToggle}
+  return { likeGame, likeGameToggle };
+};
 
-}
-
-export default useLikeConfig
+export default useLikeConfig;

@@ -43,8 +43,5 @@
   &__list-content { 
     @include layout(flex, row, center, center, initial); 
     width: 85vw;
-    @include respond(phone) {
-      width: 45vw;
-    }
   }
 }

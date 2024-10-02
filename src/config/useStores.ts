@@ -9,7 +9,7 @@ type StoreDataItem = {
 };
 
 
-const useStore = () => {
+const useStores = () => {
   const [storeData, setStoreData] = useState<StoreDataItem[]>([]);
 
   useEffect(() => {
@@ -30,4 +30,4 @@ const useStore = () => {
   
   return { storeData };
 };
-export default useStore;
+export default useStores;

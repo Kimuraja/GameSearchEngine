@@ -1,5 +1,5 @@
 import { useRef, useState, useCallback } from 'react';
-import { fetchGameDeals } from '../components/Api/FetchGameDeals'; 
+import { loadGameOffers } from '../components/Api/loadGameOffers'; 
 
 type GameInfo = {
   title: string;
@@ -13,32 +13,31 @@ type Deals = {
   retailPrice: string;
 };
 type CheapestPriceEver = {
-  price: string,
-  date: number,
-}
+  price: string;
+  date: number;
+};
 type GameData = {
   info: GameInfo;
   deals: Deals[];
-  cheapestPriceEver: CheapestPriceEver
+  cheapestPriceEver: CheapestPriceEver;
 };
 
-const useChosenStore = () => {
+const useSelectedGame = () => {
   const [gameData, setGameData] = useState<GameData>();
-  const chosenStoreRef = useRef('');
-
-  const getID = useCallback(async (ID: string) => {
+  const gameIDRef = useRef('');
+  
+  const fetchDealsByID = useCallback(async (ID: string) => {
     const encodedID = encodeURIComponent(ID);
-    chosenStoreRef.current = encodedID;
-
+    const gameID = gameIDRef.current = encodedID;
     try {
-      const data = await fetchGameDeals({ gameID: chosenStoreRef.current });
+      const data = await loadGameOffers({ gameID: gameID});
       setGameData(data);
     } catch (error) {
       console.error("ERROR:", error);
     }
   }, []);
-
-  return { gameData, getID };
+  console.log(gameData)
+  return { gameData, fetchDealsByID };
 };
 
-export default useChosenStore;
+export default useSelectedGame;
