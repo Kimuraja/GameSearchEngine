@@ -17,7 +17,7 @@ const SearchBar: React.FC = () => {
         listRef.current &&
         !listRef.current.contains(event.target as Node)
       ) {
-        setIsListVisible(false); 
+        setIsListVisible(false);
       }
     };
 
@@ -30,6 +30,10 @@ const SearchBar: React.FC = () => {
 
   const handleInputFocus = () => {
     setIsListVisible(true);
+  };
+
+  const handleItemClick = () => {
+    setIsListVisible(false);
   };
 
   return (
@@ -49,7 +53,12 @@ const SearchBar: React.FC = () => {
             <p>No games found</p>
           ) : (
             inputSearchDeal.map((game, index) => (
-              <Link to={`/selected-game/${game.gameID}`} className='games__link' key={index} >
+              <Link 
+                to={`/selected-game/${game.gameID}`} 
+                className='games__link' 
+                key={index} 
+                onClick={handleItemClick}
+              >
                 <li title={game.title} className='games__content'>
                   <img src={game.thumb} alt={game.title} draggable='false' className='games__image'/>
                   <span className="game-info">
@@ -58,9 +67,9 @@ const SearchBar: React.FC = () => {
                   </span>
                 </li>
               </Link>
-          ))
-        )}
-      </ul>
+            ))
+          )}
+        </ul>
       )}
     </section>
   );
