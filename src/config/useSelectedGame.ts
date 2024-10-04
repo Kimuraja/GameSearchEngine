@@ -36,7 +36,6 @@ const useSelectedGame = () => {
       console.error("ERROR:", error);
     }
   }, []);
-  console.log(gameData)
   return { gameData, fetchDealsByID };
 };
 

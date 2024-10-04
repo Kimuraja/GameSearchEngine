@@ -15,13 +15,12 @@ const SelectedGame: React.FC = () => {
   const { filterGame } = useGameDB()
   const score = filterGame.find((game) => game.title === gameData?.info?.title)
 
-  console.log(`game id: ${gameID}`)
-
   useEffect(() => {
     if (gameID) {
       fetchDealsByID(gameID);
     }
   }, [gameID, fetchDealsByID]);
+
 
   const date = gameData?.cheapestPriceEver?.date
   ? new Date(gameData.cheapestPriceEver.date * 1000)
@@ -48,7 +47,7 @@ const SelectedGame: React.FC = () => {
               <div className="decoration"></div>
               <ul className="game__header--list">
                 <li>
-                  Sale Price: <img src={`https://www.cheapshark.com${storeData[0]?.images["icon"] || "Unknown Store"}`} alt="img" /> <span id="price">{gameData?.deals[0]?.price}$</span>
+                  Sale Price: <span id="price">{gameData?.deals[0]?.price}$</span>
                 </li>
                 <li>Regular Price: <span id="retail">{gameData?.deals[0]?.retailPrice}$</span></li>
                 <li>Metacritic Score: <span id="critic">{score?.metacriticScore}</span></li>

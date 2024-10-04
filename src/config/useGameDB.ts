@@ -1,7 +1,9 @@
 import { useEffect, useState } from 'react';
-import { fetchGameList } from '../components/Api/FetchGameList';
+import { fetchGameList } from '../components/Api/fetchGameList';
+import { fetchSearchInput } from '../components/Api/fetchSearchInput';
+import { useDebounce } from './useDebounce';
 
-type GameList = {
+type GameDeal = {
   internalName: string;
   title: string;
   metacriticLink: string;
@@ -23,8 +25,10 @@ type GameList = {
   thumb: string;
 };
 
+
 const useGameDB = () => {
-  const [deals, setDeals] = useState<GameList[]>([]);
+  const [deals, setDeals] = useState<GameDeal[]>([]);
+  const [inputSearchDeal, setInputSearchDeal] = useState<GameDeal[]>([])
   const [searchQuery, setSearchQuery] = useState<string>('');
   
   useEffect(() => {
@@ -43,12 +47,33 @@ const useGameDB = () => {
     getDeals();
   }, []);
 
-  const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  useEffect(() => {
+    const getSearch = async () => { 
+      try {
+        const response = await fetchSearchInput({gameID: searchQuery});
+        if (response && response.data) {
+          setInputSearchDeal(response.data)
+        } else {
+          console.error('Response Error')
+        } 
+      } catch (error) {
+        console.error('Failed to fetch data', error)
+      }
+    }
+    getSearch();
+  }, [searchQuery]);
+  
+  const _handleSearch = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSearchQuery(event.target.value);
   };
+  const handleSearch = useDebounce(_handleSearch, 500)
+
+  const searchInputGame = inputSearchDeal.filter((input) => 
+    input.title && input.title.toLowerCase().includes(searchQuery.toLowerCase())
+  );
 
   const filterGame = deals.filter((deal) =>
-    deal.title.toLowerCase().includes(searchQuery.toLowerCase())
+    deal.title && deal.title.toLowerCase().includes(searchQuery.toLowerCase())
   );
 
   const gameDetails = filterGame.map((deal) => ({
@@ -61,6 +86,6 @@ const useGameDB = () => {
     score: deal.metacriticScore
   }))
 
-  return {filterGame, handleSearchChange, searchQuery, gameDetails}
+  return {filterGame, handleSearch, searchQuery, gameDetails, inputSearchDeal, searchInputGame}
 }
 export default useGameDB

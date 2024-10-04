@@ -1,5 +1,5 @@
 import { useEffect, useState} from 'react';
-import { fetchStore } from '../components/Api/FetchStore';
+import { fetchStore } from '../components/Api/fetchStore';
 
 type StoreDataItem = {
   storeID: string;

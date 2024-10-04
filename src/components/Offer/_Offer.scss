@@ -1,9 +1,5 @@
-@import '../../variables/variables';
 @import '../../variables/breakpoints';
-@import '../../variables/layout';
-@import '../../variables/sizing';
-@import '../../variables/typography';
-@import '../../variables/objects';
+@import '../../variables/mixins';
 
 .offer {
   .textarea {
@@ -29,7 +25,7 @@
   &__like-btn {
     @include sizing(.5rem, 0rem, 3.2rem, 3.2rem);
     @include layout(flex, unset, center, center, absolute);
-    z-index: 5;
+    z-index: 2;
     border: none;
     color: white;
     background: rgba(44, 44, 43, .9);

@@ -1,0 +1,104 @@
+@import url('https://fonts.cdnfonts.com/css/motiva-sans');
+
+$color_light_navy: #213246;
+$color_dark_navy: #1b2838; 
+$buy_button_dark: #527821;
+$buy_button_light: #7ca21c;
+$secondary_button: #30231e;
+$main_font-color: #fff;
+$secondary_font-color: #c0c0c0;
+
+$font-size: 1rem;
+
+*{ font-size: $font-size }
+
+@mixin layout(
+  $display,
+  $flex-direction,
+  $justify-content,
+  $align-items,
+  $position
+) {
+  display: $display;
+  flex-direction: $flex-direction;
+  justify-content: $justify-content;
+  align-items: $align-items;
+  position: $position;
+}
+
+@mixin sizing($margin, $padding, $width, $height) {
+  margin: $margin;
+  padding: $padding;
+  width: $width;
+  height: $height;
+}
+
+@mixin typography(
+  $color,
+  $font-weight,
+  $font-size,
+  $text-transform,
+  $text-decoration,
+  $letter-spacing
+) {
+  font-family: 'Motiva Sans', sans-serif;
+  color: $color;
+  font-weight: $font-weight;
+  font-size: $font-size;
+  text-transform: $text-transform;
+  text-decoration: $text-decoration;
+  letter-spacing: $letter-spacing;
+}
+
+@mixin arrow {
+  cursor: pointer;
+  transition: all .2s ease-in-out;
+  opacity: .5;
+
+  &:hover { opacity: 1; }
+}
+
+@mixin buyButton {
+  @include typography($main_font-color, 600, 1rem, unset, none, unset);
+  text-align: start;
+}
+
+@mixin mainGreenButton {
+  @include typography($main_font-color, 600, 1rem, unset, none, unset);
+  @include layout(flex, column, initial, initial, unset);
+  border-radius: 1rem;
+  background: linear-gradient(to right, $buy_button_dark, $buy_button_light);
+  border: none;
+  padding: .5rem 3rem .5rem 1rem;
+  transition: all .3s;
+  &:hover { filter: brightness(120%) }
+}
+
+@mixin gameDescription {
+  color: $secondary_font-color;
+  margin-top: 1rem;
+  display: none;
+  @include respond(phone) { display: block; }
+}
+
+@mixin sectionTextarea {
+  @include layout(flex, unset, space-between, unset, unset);
+  color: white;
+  @include respond(phone) { margin: 2rem 3rem 1rem }
+  @include respond(tab-land) { margin-left: 6rem }
+}
+
+@mixin sectionTitle { @include typography($main_font-color, 200, 1.2rem, uppercase, none, unset); }
+
+
+@mixin oldPrice {
+  text-decoration: line-through;
+  color: $secondary_font-color;
+}
+
+@mixin discount-greenBox {
+  background: linear-gradient(to right, $buy_button_dark, $buy_button_light);
+  font-size: .8rem;
+  margin-right: .8rem;
+  padding: .01rem .3rem;
+}

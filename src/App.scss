@@ -1,16 +1,19 @@
 @import "../node_modules/bootstrap/scss/bootstrap";
-@import './variables/variables';
 @import './variables/breakpoints';
-@import './variables/layout';
-@import './variables/sizing';
-@import './variables/typography';
+@import './variables/mixins';
 
-@import './components/GameList/gameList';
-@import './components/Navbar/Navbar';
-@import './components/Main/Main';
+@import './components/Category/CategoriesOverlay';
+@import './components/Category/Category';
+@import './components/Deals/Deals';
+@import './components/Footer/Footer';
 @import './components/Loading/Loading';
-@import './components/GameInfo/gameInfo';
+@import './components/Main/Main';
+@import './components/Navbar/Navbar';
 @import './components/Offer/Offer';
+@import './components/SearchBar/SearchBar';
+@import './components/SelectedGame/SelectedGame';
+@import './components/Slider/Slider';
+
 
 *, *::before, *::after {
   @include typography(unset, unset, 1rem, none, none, unset);

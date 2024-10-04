@@ -1,9 +1,10 @@
-@import '../../variables/variables';
 @import '../../variables/breakpoints';
-@import '../../variables/layout';
-@import '../../variables/sizing';
-@import '../../variables/typography';
+@import '../../variables/mixins';
 
+.main {
+  padding: 0;
+  margin: 0;
+}
 .components {
   @include sizing(0, 0, 100%, 100%);
     
