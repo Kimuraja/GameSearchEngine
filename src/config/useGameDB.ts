@@ -28,7 +28,7 @@ type GameDeal = {
 
 const useGameDB = () => {
   const [deals, setDeals] = useState<GameDeal[]>([]);
-  const [inputSearchDeal, setInputSearchDeal] = useState<GameDeal[]>([])
+  const [inputSearchDeals, setInputSearchDeals] = useState<GameDeal[]>([])
   const [searchQuery, setSearchQuery] = useState<string>('');
   
   useEffect(() => {
@@ -52,7 +52,7 @@ const useGameDB = () => {
       try {
         const response = await fetchSearchInput({gameID: searchQuery});
         if (response && response.data) {
-          setInputSearchDeal(response.data)
+          setInputSearchDeals(response.data)
         } else {
           console.error('Response Error')
         } 
@@ -68,15 +68,11 @@ const useGameDB = () => {
   };
   const handleSearch = useDebounce(_handleSearch, 500)
 
-  const searchInputGame = inputSearchDeal.filter((input) => 
-    input.title && input.title.toLowerCase().includes(searchQuery.toLowerCase())
-  );
-
-  const filterGame = deals.filter((deal) =>
+  const filterGamesList = deals.filter((deal) =>
     deal.title && deal.title.toLowerCase().includes(searchQuery.toLowerCase())
   );
 
-  const gameDetails = filterGame.map((deal) => ({
+  const gameDetailsList = filterGamesList.map((deal) => ({
     title: deal.title,
     salePrice: deal.salePrice,
     normalPrice: deal.normalPrice,
@@ -86,6 +82,7 @@ const useGameDB = () => {
     score: deal.metacriticScore
   }))
 
-  return {filterGame, handleSearch, searchQuery, gameDetails, inputSearchDeal, searchInputGame}
+
+  return {filterGamesList, handleSearch, searchQuery, gameDetailsList, inputSearchDeals}
 }
 export default useGameDB

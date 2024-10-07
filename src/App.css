@@ -12747,23 +12747,6 @@ textarea.form-control-lg {
   width: 14rem;
   height: 6rem;
 }
-.game__heading {
-  font-family: "Motiva Sans", sans-serif;
-  color: #fff;
-  font-weight: 600;
-  font-size: 1.5rem;
-  text-transform: none;
-  text-decoration: none;
-  letter-spacing: unset;
-  display: flex;
-  transition: all 0.2s ease-in-out;
-  padding: 0.5rem;
-}
-.game__heading:hover {
-  border-radius: 0.2rem;
-  background-color: #527821;
-  scale: 1.05;
-}
 .game__text {
   color: #c0c0c0;
 }
@@ -12799,6 +12782,11 @@ textarea.form-control-lg {
 
 #releaseDate {
   color: #c0c0c0;
+}
+
+#shopLink {
+  text-decoration: none;
+  color: #fff;
 }
 
 #shopNow {

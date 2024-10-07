@@ -46,17 +46,6 @@
     }
   }
   &__image { @include sizing(0, .5rem, 14rem, 6rem) }
-  &__heading { 
-    @include typography($main_font-color, 600, 1.5rem, none, none, unset);
-    display: flex;
-    transition: all .2s ease-in-out;
-    padding: .5rem;
-    &:hover { 
-      border-radius: .2rem;
-      background-color: $buy_button_dark;
-      scale: 1.05;
-    }
-  }
   &__text { color: $secondary_font-color; }
   &__list-icon { width: 2rem }
 }
@@ -72,6 +61,10 @@
 #retail { @include oldPrice }
 #critic { background-color: $color_dark_navy }
 #releaseDate { color: $secondary_font-color }
+#shopLink {
+  text-decoration: none;
+  color: $main_font-color;
+}
 
 #shopNow {
   background-color: $buy_button_dark;

@@ -1,5 +1,5 @@
 import { useRef, useState, useCallback } from 'react';
-import { loadGameOffers } from '../components/Api/loadGameOffers'; 
+import { loadGameData } from '../components/Api/loadGameData'; 
 
 type GameInfo = {
   title: string;
@@ -26,17 +26,18 @@ const useSelectedGame = () => {
   const [gameData, setGameData] = useState<GameData>();
   const gameIDRef = useRef('');
   
-  const fetchDealsByID = useCallback(async (ID: string) => {
+  const fetchGameDataByGameID = useCallback(async (ID: string) => {
     const encodedID = encodeURIComponent(ID);
     const gameID = gameIDRef.current = encodedID;
     try {
-      const data = await loadGameOffers({ gameID: gameID});
+      const data = await loadGameData({ gameID: gameID});
       setGameData(data);
     } catch (error) {
       console.error("ERROR:", error);
     }
   }, []);
-  return { gameData, fetchDealsByID };
+
+  return { gameData, fetchGameDataByGameID };
 };
 
 export default useSelectedGame;

@@ -3,16 +3,16 @@ import { Link } from 'react-router-dom'
 import useSelectedGame from '../../config/useSelectedGame';
 
 const DealsSection = () => {
-  const { filterGame } = useGameDB()
-  const { fetchDealsByID } = useSelectedGame()
+  const { filterGamesList } = useGameDB()
+  const { fetchGameDataByGameID } = useSelectedGame()
 
   return (
     <>
-      {filterGame.length <= 0 ? (
+      {filterGamesList.length <= 0 ? (
         <p className='deals__loading'>Loading...</p>
       ) : (
-        filterGame.slice(0, 10).map((deal, index) => (
-          <li className='deals__list' key={index} onClick={() => fetchDealsByID(`${deal.gameID}`)}>
+        filterGamesList.slice(0, 10).map((deal, index) => (
+          <li className='deals__list' key={index} onClick={() => fetchGameDataByGameID(`${deal.gameID}`)}>
             <Link to={`/selected-game/${deal.gameID}`} className='deals__link'>
               <div className="deals__heading">
                 <img src={deal.thumb} alt="deals__image" className='deals__image' />

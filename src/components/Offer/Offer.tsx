@@ -13,9 +13,9 @@ import OfferLikeButton from "./OfferLikeButton";
 const SMALL_GAME_COVER = [cyberpunk, assassin, dota, cod4, minecraft, farcry5];
 
 const Offer: React.FC = () => {
-  const { gameDetails } = useGameDB();
+  const { gameDetailsList } = useGameDB();
 
-  if (gameDetails.length === 0) {
+  if (gameDetailsList.length === 0) {
     return <Loading />;
   }
 
@@ -38,19 +38,19 @@ const Offer: React.FC = () => {
                       className="offer__image"
                       draggable="false"
                     />
-                    <OfferLikeButton gameId={gameDetails[index].title} />
+                    <OfferLikeButton gameId={gameDetailsList[index].title} />
                   </div>
                   <div className="offer__image-textarea">
-                    <h4 className="offer__heading">{gameDetails[index].title}</h4>
+                    <h4 className="offer__heading">{gameDetailsList[index].title}</h4>
                     <p className="offer__pricing">
                       <span className="offer__savings">
-                        {Math.round(Number(gameDetails[index].savings))}%{" "}
+                        {Math.round(Number(gameDetailsList[index].savings))}%{" "}
                       </span>
                       <span className="offer__new-price">
                         <span className="offer__old-price">
-                          {gameDetails[index]?.normalPrice || "0"}$
+                          {gameDetailsList[index]?.normalPrice || "0"}$
                         </span>
-                        {gameDetails[index]?.salePrice || "0"}$ 
+                        {gameDetailsList[index]?.salePrice || "0"}$ 
                       </span>
                     </p>
                   </div>

@@ -1,5 +1,5 @@
 import { useEffect, useState} from 'react';
-import { fetchStore } from '../components/Api/fetchStore';
+import { fetchStores } from '../components/Api/fetchStores';
 
 type StoreDataItem = {
   storeID: string;
@@ -15,7 +15,7 @@ const useStores = () => {
   useEffect(() => {
     const getStores = async () => { 
       try {
-        const response = await fetchStore();
+        const response = await fetchStores();
         if (response) {
           setStoreData(response);
         } else {
@@ -27,7 +27,6 @@ const useStores = () => {
     };
     getStores();
   }, []);
-  
   return { storeData };
 };
 export default useStores;

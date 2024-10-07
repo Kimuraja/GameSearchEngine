@@ -5,13 +5,13 @@ type GameData = {
 };
 
 const SliderTextarea = ({ index }: GameData) => {
-  const { gameDetails } = useGameDB();
+  const { gameDetailsList } = useGameDB();
 
   return (
     <div className="slider__textarea">
       <div className="slider__description">
         <h2 className="slider__heading">
-          {gameDetails[index]?.title || "Loading title..."}
+          {gameDetailsList[index]?.title || "Loading title..."}
         </h2>
         <p className="slider__text">
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus
@@ -22,10 +22,10 @@ const SliderTextarea = ({ index }: GameData) => {
           <button className="slider__button">
             <a className="slider__buy-tag">Buy now</a>
             <span className="slider__new-price">
-              {gameDetails[index]?.salePrice || "0"}
+              {gameDetailsList[index]?.salePrice || "0"}
               {"$ "}
               <span className="slider__old-price">
-                {gameDetails[index]?.normalPrice || "0"}$
+                {gameDetailsList[index]?.normalPrice || "0"}$
               </span>
             </span>
           </button>

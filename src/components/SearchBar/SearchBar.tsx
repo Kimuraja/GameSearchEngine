@@ -4,7 +4,7 @@ import './_SearchBar.scss';
 import { Link } from 'react-router-dom';
 
 const SearchBar: React.FC = () => {
-  const { handleSearch, inputSearchDeal } = useGameDB();
+  const { handleSearch, inputSearchDeals } = useGameDB();
   const [isListVisible, setIsListVisible] = useState<boolean>(false);
   const searchInputRef = useRef<HTMLInputElement>(null);
   const listRef = useRef<HTMLUListElement>(null);
@@ -47,12 +47,12 @@ const SearchBar: React.FC = () => {
         className='form-control games__input'
       />
 
-      {isListVisible && inputSearchDeal && (
+      {isListVisible && inputSearchDeals && (
         <ul className='games__list' ref={listRef}>
-          {inputSearchDeal.length <= 0 ? (
+          {inputSearchDeals.length <= 0 ? (
             <p>No games found</p>
           ) : (
-            inputSearchDeal.map((game, index) => (
+            inputSearchDeals.map((game, index) => (
               <Link 
                 to={`/selected-game/${game.gameID}`} 
                 className='games__link' 

@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-export async function fetchStore() {
+export async function fetchStores() {
   try {
     const response = await axios.get('https://www.cheapshark.com/api/1.0/stores');
     return response.data;

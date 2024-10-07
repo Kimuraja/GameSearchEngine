@@ -4,7 +4,7 @@ type GameID = {
   gameID: string;
 }
 
-export async function loadGameOffers({ gameID }: GameID) {
+export async function loadGameData({ gameID }: GameID) {
   try {
     const response = await axios.get(`https://www.cheapshark.com/api/1.0/games?id=${gameID}`);
     return response.data;

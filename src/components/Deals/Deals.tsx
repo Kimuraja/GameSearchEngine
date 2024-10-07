@@ -1,5 +1,5 @@
 import './_deals.scss'
-import DealsSection from './DealsSection'
+import DealsSection from '../Deals/DealsSection'
 
 const Deals = () => {
 
