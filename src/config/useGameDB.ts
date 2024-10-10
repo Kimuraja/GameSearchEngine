@@ -3,7 +3,7 @@ import { fetchGameList } from '../components/Api/fetchGameList';
 import { fetchSearchInput } from '../components/Api/fetchSearchInput';
 import { useDebounce } from './useDebounce';
 
-type GameDeal = {
+type GameData = {
   internalName: string;
   title: string;
   metacriticLink: string;
@@ -30,8 +30,8 @@ type GameDeal = {
 
 
 const useGameDB = () => {
-  const [gamesList, setGamesList] = useState<GameDeal[]>([]);
-  const [inputSearchDeals, setInputSearchDeals] = useState<GameDeal[]>([])
+  const [gamesList, setGamesList] = useState<GameData[]>([]);
+  const [inputSearchDeals, setInputSearchDeals] = useState<GameData[]>([])
   const [searchQuery, setSearchQuery] = useState<string>('');
   
 
@@ -88,7 +88,7 @@ const useGameDB = () => {
     savings: game.savings,
   }))
 
-  
+
   return {filteredGamesList, handleSearch, searchQuery, gameDetailsList, inputSearchDeals}
 }
 
