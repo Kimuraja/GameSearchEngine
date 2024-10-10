@@ -10,14 +10,14 @@ type StoreDataItem = {
 
 
 const useStores = () => {
-  const [storeData, setStoreData] = useState<StoreDataItem[]>([]);
+  const [stores, setStores] = useState<StoreDataItem[]>([]);
 
   useEffect(() => {
     const getStores = async () => { 
       try {
         const response = await fetchStores();
         if (response) {
-          setStoreData(response);
+          setStores(response);
         } else {
           console.warn('Failed to Fetch store');
         }
@@ -27,6 +27,6 @@ const useStores = () => {
     };
     getStores();
   }, []);
-  return { storeData };
+  return { stores };
 };
 export default useStores;

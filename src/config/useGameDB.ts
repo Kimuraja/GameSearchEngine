@@ -23,20 +23,24 @@ type GameDeal = {
   lastChange: number;
   dealRating: string;
   thumb: string;
+  cheapest: string,
+  cheapestDealID: string,
+  external: string,
 };
 
 
 const useGameDB = () => {
-  const [deals, setDeals] = useState<GameDeal[]>([]);
+  const [gamesList, setGamesList] = useState<GameDeal[]>([]);
   const [inputSearchDeals, setInputSearchDeals] = useState<GameDeal[]>([])
   const [searchQuery, setSearchQuery] = useState<string>('');
   
+
   useEffect(() => {
     const getDeals = async () => { 
       try {
         const response = await fetchGameList();
         if (response && response.data) {
-          setDeals(response.data)
+          setGamesList(response.data)
         } else {
           console.error('Response Error')
         } 
@@ -47,10 +51,11 @@ const useGameDB = () => {
     getDeals();
   }, []);
 
+
   useEffect(() => {
     const getSearch = async () => { 
       try {
-        const response = await fetchSearchInput({gameID: searchQuery});
+        const response = await fetchSearchInput({gameTitle: searchQuery});
         if (response && response.data) {
           setInputSearchDeals(response.data)
         } else {
@@ -63,26 +68,29 @@ const useGameDB = () => {
     getSearch();
   }, [searchQuery]);
   
+
   const _handleSearch = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSearchQuery(event.target.value);
   };
+
+
   const handleSearch = useDebounce(_handleSearch, 500)
 
-  const filterGamesList = deals.filter((deal) =>
-    deal.title && deal.title.toLowerCase().includes(searchQuery.toLowerCase())
+
+  const filteredGamesList = gamesList.filter((game) =>
+    game.title && game.title.toLowerCase().includes(searchQuery.toLowerCase())
   );
 
-  const gameDetailsList = filterGamesList.map((deal) => ({
-    title: deal.title,
-    salePrice: deal.salePrice,
-    normalPrice: deal.normalPrice,
-    savings: deal.savings,
-    name: deal.internalName,
-    dealID: deal.gameID,
-    score: deal.metacriticScore
+  const gameDetailsList = filteredGamesList.map((game) => ({
+    title: game.title,
+    salePrice: game.salePrice,
+    normalPrice: game.normalPrice,
+    savings: game.savings,
   }))
 
-
-  return {filterGamesList, handleSearch, searchQuery, gameDetailsList, inputSearchDeals}
+  
+  return {filteredGamesList, handleSearch, searchQuery, gameDetailsList, inputSearchDeals}
 }
+
+
 export default useGameDB

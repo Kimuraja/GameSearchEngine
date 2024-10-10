@@ -28,16 +28,28 @@
     @include sizing(.2rem 0 0 0, .3rem, 25vw, auto);
     transition: all .3s;
     cursor: pointer;
-    display: flex;
-
+    @include layout(flex, row, center, center, unset);
     &:hover { background-color: $secondary_font-color;}
   }
   &__link { 
+    background-color: $buy_button_light;
+    width: 6rem;    
+    border-radius: .3rem;
+    @include layout(flex, row, center, center, unset);
     @include typography($main_font-color, unset, 1rem, none, none, unset);
   } 
   &__image {
     width: 12rem;
     height: 5rem;
+  }
+  &__button { 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: $buy_button_light;
+    border: none;
+    width: 50%;
+    height: 2.5rem;
   }
 }
 
@@ -46,7 +58,3 @@
   @include sizing(0 0 0 .5rem, 0, 100vw, auto);
 }
 
-.game-nomralPrice {
-  text-decoration: line-through;
-  color: $secondary_font-color;
-}

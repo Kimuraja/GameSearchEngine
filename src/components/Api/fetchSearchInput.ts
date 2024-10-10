@@ -1,12 +1,12 @@
 import axios from 'axios';
 
-type GameID = {
-  gameID: string
+type gameTitle = {
+  gameTitle: string
 }
 
-export async function fetchSearchInput({gameID}: GameID) {
+export async function fetchSearchInput({gameTitle}: gameTitle) {
   try {
-    const response = await axios.get(`https://www.cheapshark.com/api/1.0/deals?storeID=1&title=${gameID}`);
+    const response = await axios.get(`https://www.cheapshark.com/api/1.0/games?title=${gameTitle}`);
     return response;
   } catch (error) {
     if (axios.isAxiosError(error)) {

@@ -9,7 +9,7 @@
 
   &__header {
     @include layout(flex, row, space-evenly, center, unset);
-    @include sizing(2rem 0 1rem 0, 2rem, 80vw, 30%);
+    @include sizing(2rem 0 1rem 0, 2rem, 80vw, 40%);
     background-color: #2a415b;
 
 

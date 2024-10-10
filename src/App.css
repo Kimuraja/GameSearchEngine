@@ -12617,11 +12617,23 @@ textarea.form-control-lg {
   transition: all 0.3s;
   cursor: pointer;
   display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  position: unset;
 }
 .games__content:hover {
   background-color: #c0c0c0;
 }
 .games__link {
+  background-color: #7ca21c;
+  width: 6rem;
+  border-radius: 0.3rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  position: unset;
   font-family: "Motiva Sans", sans-serif;
   color: #fff;
   font-weight: unset;
@@ -12634,6 +12646,15 @@ textarea.form-control-lg {
   width: 12rem;
   height: 5rem;
 }
+.games__button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #7ca21c;
+  border: none;
+  width: 50%;
+  height: 2.5rem;
+}
 
 .game-info {
   display: flex;
@@ -12645,11 +12666,6 @@ textarea.form-control-lg {
   padding: 0;
   width: 100vw;
   height: auto;
-}
-
-.game-nomralPrice {
-  text-decoration: line-through;
-  color: #c0c0c0;
 }
 
 * {
@@ -12683,7 +12699,7 @@ textarea.form-control-lg {
   margin: 2rem 0 1rem 0;
   padding: 2rem;
   width: 80vw;
-  height: 30%;
+  height: 40%;
   background-color: #2a415b;
 }
 .game__header--textarea {

@@ -11,13 +11,15 @@ import Loading from "../Loading/Loading";
 const SelectedGame: React.FC = () => {
   const { gameID } = useParams<{ gameID: string }>();
   const { gameData, fetchGameDataByGameID } = useSelectedGame();
-  const { storeData } = useStores();
-  const cheaperGameList = gameData?.deals || [];
-  const { filterGamesList } = useGameDB();
-  const score = filterGamesList.find((game) => game.title === gameData?.info?.title);
+  const { stores } = useStores();
+  const { filteredGamesList } = useGameDB();
   const [loading, setLoading] = useState(true);
 
-  const sortedCheaperGameList = cheaperGameList.sort((a, b) => parseFloat(a.price) - parseFloat(b.price));
+
+  const cheaperGamesList = gameData?.deals || [];
+  const sortedCheaperGamesList = cheaperGamesList.sort((a, b) => parseFloat(a.price) - parseFloat(b.price));
+  const score = filteredGamesList.find((game) => game.title === gameData?.info?.title);
+
 
   useEffect(() => {
     if (gameID) {
@@ -29,15 +31,18 @@ const SelectedGame: React.FC = () => {
   const date = gameData?.cheapestPriceEver?.date
     ? new Date(gameData.cheapestPriceEver.date * 1000)
     : undefined;
-  const formattdDate = date ? date.toLocaleDateString("pl-PL") : "Loading Date...";
+  const formatedDate = date ? date.toLocaleDateString("pl-PL") : "Loading Date...";
+
 
   if (loading) {
     return <Loading/>;
   }
 
+
   if (!gameData || !gameData.info) {
     return <h1>No game data found</h1>;
   }
+
 
   return (
     <section className="container-fluid">
@@ -63,14 +68,16 @@ const SelectedGame: React.FC = () => {
                 </li>
                 <li>Regular price: <span id="retail">{gameData?.deals[0]?.retailPrice}$</span></li>
                 <li>Metacritic Score: <span id="critic">{score?.metacriticScore}</span></li>
-                <li>Release Date: <span id="releaseDate">{formattdDate}</span></li>
+                <li>Release Date: <span id="releaseDate">{formatedDate}</span></li>
               </ul>
             </div>
 
             <div className="game__body">
-              {sortedCheaperGameList.length > 0 ? (
+              {sortedCheaperGamesList.length > 0 ? (
                 <div className="game__list-content">
-                  {sortedCheaperGameList.slice(0, 5).map((store) => (
+                  {sortedCheaperGamesList.slice(0, 5).map((store) => (
+                    <div key={store.dealID}>
+
                     <a
                       href={`https://www.cheapshark.com/redirect?dealID=${store.dealID}`}
                       target="_blank"
@@ -81,8 +88,8 @@ const SelectedGame: React.FC = () => {
                         <li className="game__list-content">
                           <img
                             src={`https://www.cheapshark.com${
-                              storeData.find(
-                                (storeDataItem) => storeDataItem?.storeID === store.storeID
+                              stores.find(
+                                (storesItem) => storesItem?.storeID === store.storeID
                               )?.images["icon"] || "Unknown Store"
                             }`}
                             alt="store-icon"
@@ -102,6 +109,7 @@ const SelectedGame: React.FC = () => {
                         </li>
                       </ul>
                     </a>
+                    </div>
                   ))}
                 </div>
               ) : (

@@ -3,11 +3,15 @@ import { useRef, useEffect } from "react";
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 type AnyFunction = (...args: any[]) => void;
 
+
 export function useDebounce<DebouncedFunction extends AnyFunction>(
   func: DebouncedFunction,
   delay = 1000
 ) {
+
+
   const timer = useRef<ReturnType<typeof setTimeout>>();
+
 
   useEffect(() => {
     return () => {
@@ -15,6 +19,7 @@ export function useDebounce<DebouncedFunction extends AnyFunction>(
       clearTimeout(timer.current);
     };
   }, []);
+
 
   const debouncedFunction = ((...args: Parameters<DebouncedFunction>) => {
     const newTimer = setTimeout(() => {

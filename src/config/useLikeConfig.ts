@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 
+
 const useLikeConfig = (gameId: string) => {
   const [likeGame, setLikeGame] = useState(() => {
     const savedLikeGame = localStorage.getItem(`likeGame_${gameId}`);
@@ -16,5 +17,6 @@ const useLikeConfig = (gameId: string) => {
 
   return { likeGame, likeGameToggle };
 };
+
 
 export default useLikeConfig;
