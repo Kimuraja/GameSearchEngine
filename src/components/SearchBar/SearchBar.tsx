@@ -34,7 +34,7 @@ const SearchBar: React.FC = () => {
       if (inputSearchDeals.length === 0) {
         setSearchTimeout(true);
       }
-    }, 3000);
+    }, 5000);
     if (inputSearchDeals.length > 0) {
       setSearchTimeout(false);
       clearTimeout(timer);
