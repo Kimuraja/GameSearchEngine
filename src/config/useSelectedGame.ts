@@ -2,7 +2,7 @@ import { useRef, useState, useCallback } from 'react';
 import { loadGameData } from '../components/Api/loadGameData'; 
 
 
-type GameData = {
+type GameInfo = {
   title: string;
   steamAppID: string;
   thumb: string;
@@ -17,15 +17,15 @@ type CheapestPriceEver = {
   price: string;
   date: number;
 };
-type DealsData = {
-  info: GameData;
+type GameData = {
+  info: GameInfo;
   deals: Deals[];
   cheapestPriceEver: CheapestPriceEver;
 };
 
 
 const useSelectedGame = () => {
-  const [gameData, setGameData] = useState<DealsData>();
+  const [gameData, setGameData] = useState<GameData>();
   const gameIDRef = useRef('');
   
   const fetchGameDataByGameID = useCallback(async (ID: string) => {
